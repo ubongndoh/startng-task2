@@ -20,7 +20,8 @@
             width: 980px;
             margin: 40px auto 60px;
         }
-        h3{
+
+        h3 {
             font: bold;
             color: goldenrod;
             text-decoration: underline;
@@ -83,6 +84,34 @@
         footer h3 {
             text-align: center;
         }
+
+        legend {
+            font-size: 20px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+
+        input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type=submit]:hover {
+  background-color: #45a049;
+}
     </style>
 </head>
 
@@ -212,8 +241,70 @@
                 </div>
             </div>
         </footer>
+        <div class="contact form">
+            <form method="POST" action="#" onsubmit="return Validate()" name="vform" >
+                <fieldset>
+                    <legend align="center">Contact Form</legend>
+                   <div id="username_div">
+                    <label for="name">Name:</label><br>
+                    <input type="text" id="name" name="username"><br>
+                    <div id="name_error"></div>
+                   </div>
+                    <label for="email">Email:</label><br>
+                    <input type="email" name="email" id="email" required><br>
+                    <label for="title">Title:</label><br>
+                    <input type="text" id="title" required><br>
+                    <div id="textarea_div">
+                        <label for="textarea">Message:</label>
+                    <textarea name="textarea" id="textarea"></textarea><br>
+                    <div id="message_error"></div>
+                    </div>
+                    <input type="submit" value="submit">
+                </fieldset>
+            </form>
+        </div>
     </div>
+<script>
+var username = document.forms['vform']['username'];
+var textarea = document.forms['vform']['textarea'];
 
+var name_error = document.getElementById('name_error');
+var name_error = document.getElementById('message_error');
+
+function Validate(){
+    if (username.value == "") {
+    username.style.border = "1px solid red";
+    document.getElementById('username_div').style.color = "red";
+    name_error.textContent = "Username is required";
+    username.focus();
+    return false;
+  }
+  // validate username
+  if (username.value.length < 4) {
+    username.style.border = "1px solid red";
+    document.getElementById('username_div').style.color = "red";
+    name_error.textContent = "Username must be at least 4 letters";
+    username.focus();
+    return false;
+  }
+  //validate textarea
+  if (textarea.value == "") {
+    textarea.style.border = "1px solid red";
+    document.getElementById('textarea_div').style.color = "red";
+    message_error.textContent = "Message is required";
+    textarea.focus();
+    return false;
+  }
+  // validate textarea
+  if (textarea.value.length < 20) {
+    textarea.style.border = "1px solid red";
+    document.getElementById('textarea_div').style.color = "red";
+    message_error.textContent = "Message must be at least 20 characters";
+    textarea.focus();
+    return false;
+  }
+}
+</script>
 
 </body>
 
